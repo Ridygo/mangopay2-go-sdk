@@ -50,9 +50,11 @@ func (p *PayIn) String() string {
 // DirectPayIn is used to process a payment with registered (tokenized) cards.
 type DirectPayIn struct {
 	PayIn
-	SecureModeReturnUrl string
-	CardId              string
-	DebitedWalletId     string
+	SecureModeReturnUrl   string
+	CardId                string
+	DebitedWalletId       string
+	SecureModeNeeded      bool
+	SecureModeRedirectUrl string
 	service             *MangoPay
 }
 
