@@ -58,6 +58,7 @@ type Card struct {
 	Active         bool
 	Currency       string // Currency accepted in the waller, i.e EUR, USD etc.
 	Validity       string // UNKNOWN, VALID, INVALID
+	service     *MangoPay
 }
 
 func (c *Card) String() string {
@@ -219,4 +220,20 @@ func (c *CardRegistration) Register(registrationData string) error {
 	c.service = serv
 	c.isInitialized = isr
 	return nil
+}
+
+// Save creates or updates a legal user. The Create API is used
+// if the user's Id is an empty string. The Edit API is used when
+// the Id is a non-empty string.
+func (m *MangoPay) DeactivateCard(cardId string) (*Card, error) {
+	var action mangoAction
+
+		action = actionDeactivateCard
+
+
+	any, err2 := m.anyRequest(new(Card), action, JsonObject{"CardId": cardId})
+	if err2 != nil {
+		return nil,err2
+	}
+	return any.(*Card), nil
 }

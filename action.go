@@ -40,6 +40,7 @@ const (
 	actionSendCardRegistrationData
 
 	actionFetchCard
+	actionDeactivateCard
 
 	actionCreateTransferRefund
 	actionCreatePayInRefund
@@ -181,6 +182,11 @@ var mangoRequests = map[mangoAction]mangoRequest{
 		"GET",
 		"/cards/{{Id}}",
 		JsonObject{"Id": ""},
+	},
+	actionDeactivateCard: mangoRequest{
+		"PUT",
+		"/cards/{{CardId}}",
+		JsonObject{"CardId": ""},
 	},
 	actionCreateTransferRefund: mangoRequest{
 		"POST",
