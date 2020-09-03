@@ -56,7 +56,7 @@ var DefaultClient = &http.Client{
 		// default used if not specified) seems no more supported by MangoPay
 		// servers (used to be working though). Using TLS 1.2 results in
 		// "connection reset by peer" errors.
-		TLSClientConfig: &tls.Config{MaxVersion: tls.VersionTLS11},
+		TLSClientConfig: &tls.Config{MaxVersion: tls.VersionTLS12},
 	},
 }
 
